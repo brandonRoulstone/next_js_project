@@ -17,7 +17,8 @@ const Navbar = () => {
                     </li>
                 </div>
 
-                {/* {----------------------------------------} */}
+                { !session ? (
+
                 <div className="auth">
                     <>
                         <li className="mx-4 mt-5">
@@ -28,6 +29,18 @@ const Navbar = () => {
                         </li>
                     </>
                 </div>
+                )  : (
+                    <>
+
+                        <p className="mb-4">{session.user?.email}</p>
+                        <li>
+                            <button onClick={() => {
+                                signOut()
+                            }} className="p-2 px-5 mb-[2rem] bg-red-600">Logout</button>
+                        </li>
+                
+                    </>
+                )}
 
             </ul>
         </div>
