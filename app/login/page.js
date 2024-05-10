@@ -26,8 +26,10 @@ const Login = () => {
     }
 
     const res = await signIn('credentials', {
+      email: email,
+      password: password,
+      callbackUrl: '/',
       redirect: false,
-      email,password
     });
 
     if(res?.error){

@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from 'bcrypt'
 import connectDB from "@/config/db"
 import User from "@/model/User"
-import { signIn } from "next-auth/react"
+// import { signIn } from "next-auth/react"
 
 export const authOptions = {
     providers : [
@@ -25,6 +25,7 @@ export const authOptions = {
                     try {
 
                         const user = await User.findOne({email: credientials.email})
+                        console.log("heelp")
 
                         if(user){
                             const isPasswordCorrect = await bcrypt.compare(credientials.password, user.password);
