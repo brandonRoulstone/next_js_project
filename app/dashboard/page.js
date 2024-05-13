@@ -5,7 +5,7 @@ import Link from "next/link";
 const Dashboard = async () => {
     const session = getServerSession();
     if(!session){
-        redirect('/login')
+      redirect('/login')
     }
   return (
     !session ? (
