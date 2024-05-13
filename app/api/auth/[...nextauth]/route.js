@@ -20,27 +20,24 @@ export const authOptions = {
                     type: 'password'
                 },
 
-                async authorize(credientials){
-                    await connectDB()
-                    try {
-
-                        const user = await User.findOne({email: credientials.email})
-                        console.log("heelp")
-
-                        if(user){
-                            const isPasswordCorrect = await bcrypt.compare(credientials.password, user.password);
-
-                            if(isPasswordCorrect){
-                                return User;
-                            }
+            },
+            async authorize(credentials){
+                await connectDB()
+                try {
+                    const user = await User.findOne({email:credentials.email})
+                    console.log("heelp")
+                    if(user){
+                        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+                        if(isPasswordCorrect){
+                            return user;
                         }
-                        
-                    } catch (error) {
-                        throw new Error(error);
                     }
+                    
+                } catch (error) {
+                    throw new Error(error);
                 }
-
             }
+
         })
     ],
     callbacks : {
